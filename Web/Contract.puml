@@ -1,0 +1,53 @@
+@startuml
+title Диаграмма прецедентов - Реестр контрактов
+
+'https://plantuml.com/use-case-diagram
+rectangle "Реестр контрактов" as regCon {
+    package "Прецеденты.Доступ: Введение" as CRUD_FUNC {
+        usecase "Добавить контракт\n в реестр" as addCon
+        usecase "Удалить контракт\n из реестра" as deleteCon
+        usecase "Редактирование контракта\n в реестре" as updateCon
+        usecase "Загрузить скан-образ" as loadScan
+        usecase "Удалить скан-образ" as deleteScan
+    }
+    package "Прецеденты.Доступ: Просмотр" as VIEW_FUNC{
+        usecase "Просмотр контракта\n в реестре" as viewCon
+        usecase "Сортировка" as sortCon
+        usecase "Фильтрация" as filterCon
+        usecase "Экспорт в Excel" as exportCon
+   }
+}
+
+rectangle "Акторы.Доступ: Введение" as CRUD_ACTORS {
+    package "ОМСУ" as CRUD_OMSU {
+        actor "Оператор ОМСУ" as opOMSU
+    }
+}
+
+rectangle "Акторы.Доступ: Просмотр" as VIEW_ACTORS {
+    package "ВетСлужба" as VIEW_VET {
+        actor "Куратор ВетСлужбы" as curVet
+        actor "Оператор ВетСлужбы" as opVet
+        actor "Подписант ВетСлужбы" as podVet
+    }
+
+    package "Отлов" as Otlov{
+    actor "Куратор по отлову" as curOtlov
+    actor "Подписант по отлову" as podOtlov
+    }
+
+    package "Приют" as Pr{
+    actor "Куратор приюта" as curPr
+    actor "Подписант приюта" as podPr
+    }
+
+    package "ОМСУ" as OMSU {
+    actor "Куратор ОМСУ" as curOMSU
+    actor "Оператор ОМСУ" as opOMSU
+    actor "Подписант ОМСУ" as podOMSU
+    }
+}
+
+CRUD_ACTORS --> CRUD_FUNC
+VIEW_ACTORS --> VIEW_FUNC
+@enduml

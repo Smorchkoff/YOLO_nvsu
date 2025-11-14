@@ -1,0 +1,85 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+rectangle "ВетСлужба" {
+    actor "Куратор ВетСлужбы" as curVet
+    actor "Оператор ВетСлужбы" as opVet
+    actor "Подписант ВетСлужбы" as podVet
+    actor "Ветврач" as docVet
+}
+
+rectangle "Отлов" {
+    actor "Куратор по отлову" as curOtlov
+    actor "Оператор по отлову" as opOtlov
+    actor "Подписант по отлову" as podOtlov
+}
+
+rectangle "Приют" {
+    actor "Куратор приюта" as curPr
+    actor "Оператор приюта" as opPr
+    actor "Подписант приюта" as podPr
+    actor "Ветврач приюта" as docPr
+}
+
+rectangle "ОМСУ" {
+    actor "Куратор ОМСУ" as curOMSU
+    actor "Оператор ОМСУ" as opOMSU
+    actor "Подписант ОМСУ" as podOMSU
+}
+
+rectangle "Реестр животных" as regAnimal {
+    usecase "Добавить животное\n в реестр" as addAnimal
+    usecase "Удалить животное\n из реестра" as deleteAnimal
+    usecase "Просмотр животного\n в реестре" as viewAnimal
+    usecase "Сортировка" as sortAnimal
+    usecase "Фильтрация" as filterAnimal
+    usecase "Экспорт в Excel" as exportAnimal
+    usecase "Редактирование животного\n в реестре" as updateAnimal
+    usecase "Загрузить фото" as loadImg
+    usecase "Удалить фото" as deleteImg
+}
+
+rectangle "Реестр организаций" as regOrg {
+    usecase "Добавить организацию\n в реестр" as addOrg
+    usecase "Удалить организацию\n из реестра" as deleteOrg
+    usecase "Просмотр организацию\n в реестре" as viewOrg
+    usecase "Сортировка" as sortOrg
+    usecase "Фильтрация" as filterOrg
+    usecase "Экспорт в Excel" as exportOrg
+    usecase "Редактирование организации\n в реестре" as updateOrg
+}
+
+rectangle "Реестр контрактов" as regCon {
+    usecase "Добавить контракт\n в реестр" as addCon
+    usecase "Удалить контракт\n из реестра" as deleteCon
+    usecase "Просмотр контракта\n в реестре" as viewCon
+    usecase "Сортировка" as sortCon
+    usecase "Фильтрация" as filterCon
+    usecase "Экспорт в Excel" as exportCOn
+    usecase "Редактирование контракта\n в реестре" as updateCon
+    usecase "Загрузить скан-образ" as loadScan
+    usecase "Удалить скан-образ" as deleteScan
+}
+'Введение реестра животных
+opPr --> addAnimal
+docPr --> addAnimal
+docVet --> addAnimal
+
+opPr --> deleteAnimal
+docPr --> deleteAnimal
+docVet --> deleteAnimal
+
+opPr --> updateAnimal
+docPr --> updateAnimal
+docVet --> updateAnimal
+
+opPr --> loadImg
+docPr --> loadImg
+docVet --> loadImg
+
+opPr --> deleteImg
+docPr --> deleteImg
+docVet --> deleteImg
+
+@enduml

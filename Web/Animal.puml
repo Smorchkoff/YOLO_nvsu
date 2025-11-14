@@ -1,0 +1,67 @@
+@startuml
+title Диаграмма прецедентов - Реестр животных
+
+
+
+rectangle "Реестр животных" as regAnimal {
+    package "Прецеденты.Доступ: Введение" as CRUD_Func {
+        usecase "Добавить животное\n в реестр" as addAnimal
+        usecase "Удалить животное\n из реестра" as deleteAnimal
+        usecase "Редактирование животного\n в реестре" as updateAnimal
+        usecase "Загрузить фото" as loadImg
+        usecase "Удалить фото" as deleteImg
+    }
+    package "Прецеденты.Доступ: Просмотр" as VIEW_FUNC{
+        usecase "Просмотр животного\n в реестре" as viewAnimal
+        usecase "Сортировка" as sortAnimal
+        usecase "Фильтрация" as filterAnimal
+        usecase "Экспорт в Excel" as exportAnimal
+   }
+
+}
+
+rectangle "Акторы.Доступ: Введение" as CRUD_ACTORS {
+    package "Приют" as CRUD_PR {
+         actor "Оператор приюта" as opPr
+         actor "Ветврач приюта" as docPr
+    }
+    package "ВетСлужба" as CRUD_VET {
+        actor "Ветврач" as docVet
+    }
+
+}
+
+rectangle "Акторы.Доступ: Просмотр" as VIEW_ACTORS {
+    package "ВетСлужба" as VIEW_VET {
+        actor "Куратор ВетСлужбы" as curVet
+        actor "Оператор ВетСлужбы" as opVet
+        actor "Подписант ВетСлужбы" as podVet
+        actor "Ветврач" as docVet
+    }
+
+    package "Отлов" as Otlov{
+    actor "Куратор по отлову" as curOtlov
+    actor "Оператор по отлову" as opOtlov
+    actor "Подписант по отлову" as podOtlov
+}
+
+    package "Приют" as Pr{
+    actor "Куратор приюта" as curPr
+    actor "Оператор приюта" as opPr
+    actor "Подписант приюта" as podPr
+    actor "Ветврач приюта" as docPr
+}
+
+    package "ОМСУ" as OMSU {
+    actor "Куратор ОМСУ" as curOMSU
+    actor "Оператор ОМСУ" as opOMSU
+    actor "Подписант ОМСУ" as podOMSU
+}
+
+VIEW_ACTORS --> VIEW_FUNC
+CRUD_ACTORS --> CRUD_Func
+
+
+
+
+@enduml
